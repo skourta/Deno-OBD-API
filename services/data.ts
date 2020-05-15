@@ -63,3 +63,22 @@ export const deleteData = async (dataId: string): Promise<void> => {
 
   persistData(filteredUsers);
 };
+
+export const createdDummyData = async (data: PartialData): Promise<string> => {
+  const oldData = await fetchData();
+
+  let dummyData = [];
+  for (let index = 0; index < 8640; index++) {
+    const newData: Data = {
+      id: createId(),
+      speed: data.speed,
+      distance: data.distance,
+      fuel: data.fuel,
+      date: new Date(),
+    };
+    dummyData.push(newData);
+  }
+  await persistData([...oldData, ...dummyData]);
+
+  return "Data Added";
+};
