@@ -1,10 +1,10 @@
 import { Request, Response } from "https://deno.land/x/oak/mod.ts";
-import { updateUser } from "../services/users.ts";
+import { updateData } from "../services/data.ts";
 
 export default async ({
   params,
   request,
-  response
+  response,
 }: {
   params: any;
   request: Request;
@@ -14,21 +14,21 @@ export default async ({
 
   if (!userId) {
     response.status = 400;
-    response.body = { msg: "Invalid user id" };
+    response.body = { msg: "Invalid id" };
     return;
   }
 
   if (!request.hasBody) {
     response.status = 400;
-    response.body = { msg: "Invalid user data" };
+    response.body = { msg: "Invalid data" };
     return;
   }
 
   const {
-    value: { name, role, jiraAdmin }
+    value: { speed, distance, fuel },
   } = await request.body();
 
-  await updateUser(userId, { name, role, jiraAdmin });
+  await updateData(userId, { speed, distance, fuel });
 
-  response.body = { msg: "User updated" };
+  response.body = { msg: "Data updated" };
 };

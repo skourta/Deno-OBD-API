@@ -1,7 +1,7 @@
 import { DB_PATH } from "../config.ts";
-import { User } from "../models/user.ts";
+import { Data } from "../models/data.ts";
 
-export const fetchData = async (): Promise<User[]> => {
+export const fetchData = async (): Promise<Data[]> => {
   const data = await Deno.readFile(DB_PATH);
 
   const decoder = new TextDecoder();
@@ -10,7 +10,7 @@ export const fetchData = async (): Promise<User[]> => {
   return JSON.parse(decodedData);
 };
 
-export const persistData = async (data: User[]): Promise<void> => {
+export const persistData = async (data: Data[]): Promise<void> => {
   const encoder = new TextEncoder();
   await Deno.writeFile(DB_PATH, encoder.encode(JSON.stringify(data)));
 };

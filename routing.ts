@@ -1,18 +1,18 @@
 import { Router } from "https://deno.land/x/oak/mod.ts";
 
-import getUsers from "./handlers/getUsers.ts";
-import getUserDetails from "./handlers/getUserDetails.ts";
-import createUser from "./handlers/createUser.ts";
-import updateUser from "./handlers/updateUser.ts";
-import deleteUser from "./handlers/deleteUser.ts";
+import getAll from "./handlers/getAll.ts";
+import getDataDetails from "./handlers/getDataDetails.ts";
+import createData from "./handlers/createData.ts";
+import updateData from "./handlers/updateData.ts";
+import deleteData from "./handlers/deleteData.ts";
 
 const router = new Router();
 
 router
-  .get("/users", getUsers)
-  .get("/users/:id", getUserDetails)
-  .post("/users", createUser)
-  .put("/users/:id", updateUser)
-  .delete("/users/:id", deleteUser);
+  .get("/data", getAll)
+  .get("/data/:id", getDataDetails)
+  .post("/data", createData)
+  .put("/data/:id", updateData)
+  .delete("/data/:id", deleteData);
 
 export default router;

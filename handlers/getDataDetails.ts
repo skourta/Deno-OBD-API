@@ -1,9 +1,9 @@
 import { Response, RouteParams } from "https://deno.land/x/oak/mod.ts";
-import { getUser } from "../services/users.ts";
+import { getData } from "../services/data.ts";
 
 export default async ({
   params,
-  response
+  response,
 }: {
   params: RouteParams;
   response: Response;
@@ -12,14 +12,14 @@ export default async ({
 
   if (!userId) {
     response.status = 400;
-    response.body = { msg: "Invalid user id" };
+    response.body = { msg: "Invalid id" };
     return;
   }
 
-  const foundUser = await getUser(userId);
+  const foundUser = await getData(userId);
   if (!foundUser) {
     response.status = 404;
-    response.body = { msg: `User with ID ${userId} not found` };
+    response.body = { msg: `Data with ID ${userId} not found` };
     return;
   }
 
