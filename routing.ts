@@ -6,6 +6,7 @@ import createData from "./handlers/createData.ts";
 import updateData from "./handlers/updateData.ts";
 import deleteData from "./handlers/deleteData.ts";
 import createdDummyData from "./handlers/createDummyData.ts";
+import createArrayData from "./handlers/createArrayData.ts";
 
 const router = new Router();
 
@@ -14,6 +15,7 @@ router
   .get("/data/:id", getDataDetails)
   .post("/data", createData)
   .post("/data/createDummy", createdDummyData)
+  .post("/data/array", createArrayData)
   .put("/data/:id", updateData)
   .delete("/data/:id", deleteData);
 

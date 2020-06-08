@@ -7,8 +7,6 @@ type PartialData = Pick<Data, "speed" | "distance" | "fuel">;
 
 export const getAll = async (): Promise<Data[]> => {
   const data = await fetchData();
-
-  // sort by name
   return data;
 };
 

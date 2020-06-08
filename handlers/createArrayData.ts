@@ -15,19 +15,18 @@ export default async ({
   }
 
   const {
-    value: { speed, distance, fuel,date },
+    value: values,
   } = await request.body();
-  console.log(request.body());
-  if (!speed || !distance || !fuel) {
-    response.status = 422;
-    response.body = {
-      msg: "Incorrect data. Speed, Distance and Fuel are required",
-    };
-
-    return;
+  // console.log(values);
+  for (let index = 0; index < values.length; index++) {
+    const element = values[index];
+    await createData(element);
   }
+  // values.forEach(async (element: any) => {
+  //   await createData(element);
+  // });
 
-  const userId = await createData({ speed, distance, fuel });
+  // const userId = await createData({ speed, distance, fuel });
 
-  response.body = { msg: "Data created", userId };
+  response.body = { msg: "Data created" };
 };

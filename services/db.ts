@@ -3,7 +3,6 @@ import { Data } from "../models/data.ts";
 
 export const fetchData = async (): Promise<Data[]> => {
   const data = await Deno.readFile(DB_PATH);
-
   const decoder = new TextDecoder();
   const decodedData = decoder.decode(data);
 
