@@ -17,7 +17,7 @@ export default async ({
   const {
     value: values,
   } = await request.body();
-  // console.log(values);
+  console.log(values);
   for (let index = 0; index < values.length; index++) {
     const element = values[index];
     await createData(element);

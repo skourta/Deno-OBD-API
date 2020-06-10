@@ -66,7 +66,7 @@ export const createdDummyData = async (data: PartialData): Promise<string> => {
   const oldData = await fetchData();
 
   let dummyData = [];
-  for (let index = 0; index < 8640; index++) {
+  for (let index = 0; index < 17280; index++) {
     const newData: Data = {
       id: createId(),
       speed: data.speed,
