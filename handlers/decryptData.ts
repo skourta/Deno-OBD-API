@@ -38,22 +38,27 @@ export default async ({
     value: values,
   } = await request.body();
 
+  const data = await Deno.readFile("./db/users.json");
+  const decoder = new TextDecoder();
+  const decodedData = decoder.decode(data);
+  const users = JSON.parse(decodedData);
+
+  const driver = decrypt(values.driver.replace(/'/g, '"'));
+  console.log(driver);
+  if (!users.includes(driver)) {
+    response.status = 400;
+    response.body = { msg: "Not an authenticated driver!!!" };
+    return;
+  }
+
   console.log(values);
   console.log(decrypt(values.enc).replace(/'/g, '"'));
   let jsonArray = JSON.parse(decrypt(values.enc).replace(/'/g, '"'));
+
   for (let index = 0; index < jsonArray.length; index++) {
     const element = jsonArray[index];
     await createData(element);
   }
-  //   for (let index = 0; index < values.length; index++) {
-  //     const element = values[index];
-  //     await createData(element);
-  //   }
-  // values.forEach(async (element: any) => {
-  //   await createData(element);
-  // });
-
-  // const userId = await createData({ speed, distance, fuel });
 
   response.body = { msg: "Data received" };
 };
