@@ -8,6 +8,7 @@ import deleteData from "./handlers/deleteData.ts";
 import createdDummyData from "./handlers/createDummyData.ts";
 import createArrayData from "./handlers/createArrayData.ts";
 import decryptData from "./handlers/decryptData.ts";
+import authenticate from "./handlers/authenticate.ts";
 
 const router = new Router();
 
@@ -18,6 +19,7 @@ router
   .post("/data/encrypted", decryptData)
   .post("/data/createDummy", createdDummyData)
   .post("/data/array", createArrayData)
+  .post("/auth", authenticate)
   .put("/data/:id", updateData)
   .delete("/data/:id", deleteData);
 
