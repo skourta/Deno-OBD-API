@@ -43,12 +43,7 @@ export default async ({
   const decodedData = decoder.decode(data);
 
   const users = JSON.parse(decodedData);
-  console.log(users);
-
-  //   console.log(values);
-  // const driver = values.enc;
   const driver = decrypt(values.enc.replace(/'/g, '"'));
-  console.log(driver);
   if (!users.includes(driver)) {
     response.status = 400;
     response.body = { msg: "Not an authenticated driver!!!" };

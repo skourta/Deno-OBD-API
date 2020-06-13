@@ -22,11 +22,5 @@ export default async ({
     const element = values[index];
     await createData(element);
   }
-  // values.forEach(async (element: any) => {
-  //   await createData(element);
-  // });
-
-  // const userId = await createData({ speed, distance, fuel });
-
   response.body = { msg: "Data created" };
 };
